@@ -1,0 +1,209 @@
+:root{
+  --bg1: #05040a;
+  --bg2: #0b0611;
+  --panel: rgba(255,255,255,0.03);
+  --accent1: #6ef6ff; /* cyan */
+  --accent2: #d28fff; /* magenta */
+  --text: #dbe7ff;
+  --muted: #9aa6bf;
+  --glass: rgba(255,255,255,0.03);
+  --radius: 12px;
+  --glass-border: rgba(110,246,255,0.08);
+  font-family: "Share Tech Mono", monospace;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body.bg{
+  margin:0;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(140,32,255,0.08), transparent),
+              linear-gradient(180deg,var(--bg1),var(--bg2));
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  font-size:16px;
+  padding-bottom:48px;
+}
+
+.skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip:focus{left:10px;top:10px;width:auto;height:auto;padding:8px;background:#111;color:#fff;border-radius:4px;z-index:1000}
+
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px 28px;
+  position:sticky;
+  top:0;
+  backdrop-filter: blur(6px) saturate(120%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  z-index:50;
+}
+
+.logo a, .logo svg { color:var(--accent1); text-decoration:none; }
+.logo text{ fill: url(#g); }
+
+.nav ul {
+  list-style: none; /* прибирає маркери списку */
+  margin: 0;
+  padding: 0;
+  display: flex; /* елементи горизонтально */
+  gap: 8px;
+  align-items: center;
+}
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.6px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease; /* плавність при зміні станів */
+}
+.nav a:hover {
+  color: var(--text);
+  background: linear-gradient(90deg, rgba(110,246,255,0.1), rgba(210,143,255,0.1));
+  box-shadow: 0 0 8px rgba(110,246,255,0.4);
+}
+.nav a.active {
+  color: var(--accent1);
+  background: linear-gradient(90deg, rgba(110,246,255,0.03), rgba(210,143,255,0.02));
+}
+.hero{
+  display:flex;
+  gap:28px;
+  align-items:stretch;
+  padding:36px;
+  max-width:1200px;
+  margin:22px auto;
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  overflow:hidden;
+  position:relative;
+  border:1px solid rgba(255,255,255,0.02);
+}
+
+.hero .hero-inner{
+  flex:1;
+  min-width:280px;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:12px;
+  z-index:2;
+}
+.hero h1{
+  font-family:"Orbitron", sans-serif;
+  font-size:2.2rem;
+  margin:0;
+  line-height:1.05;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+}
+.lead{ color:var(--muted); margin:0; max-width:60ch; }
+.accent{ color:var(--accent2); }
+
+.hero-image{
+  width:48%;
+  min-width:300px;
+  position:relative;
+  overflow:hidden;
+  border-left:1px solid rgba(255,255,255,0.02);
+}
+.hero-image img{ display:block; width:100%; height:100%; object-fit:cover; opacity:0.98; transform:scale(1.02) translateZ(0); }
+.hero .glitch{
+  position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(90deg, transparent 0, rgba(110,246,255,0.03) 20%, transparent 40%, rgba(210,143,255,0.02) 60%, transparent 100%);
+  mix-blend-mode:screen;
+  animation: shimmer 6s linear infinite;
+}
+@keyframes shimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+
+.btn{ display:inline-block; padding:10px 18px; border-radius:10px; text-decoration:none; font-family:"Orbitron"; letter-spacing:0.6px; border:1px solid rgba(255,255,255,0.04);}
+.btn{ background: linear-gradient(90deg, rgba(110,246,255,0.06), rgba(210,143,255,0.03)); color:var(--text); box-shadow: 0 8px 30px rgba(0,0,0,0.6);}
+.btn.ghost{ background:transparent; border:1px dashed rgba(255,255,255,0.04); color:var(--muted); }
+
+.content-cards{ display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:20px; max-width:1200px; margin:18px auto; padding:0 18px; }
+.card{ background:var(--panel); border-radius:12px; padding:16px; border:1px solid rgba(255,255,255,0.02); box-shadow: 0 8px 30px rgba(0,0,0,0.5);}
+.card h2{ font-family:"Orbitron"; margin-top:0; font-size:1.1rem; color:var(--accent1); }
+.card img{ width:100%; border-radius:8px; margin:8px 0; display:block; }
+
+.table-section{ max-width:1200px; margin:18px auto; padding:0 18px; }
+.table-wrap{ overflow:auto; border-radius:12px; padding:10px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); border:1px solid rgba(255,255,255,0.02); }
+
+.styled-table{ width:100%; border-collapse:collapse; min-width:600px; font-family: "Share Tech Mono", monospace; }
+.styled-table caption{ text-align:left; padding-bottom:8px; color:var(--muted); }
+.styled-table thead tr th{ text-align:left; padding:10px 12px; font-weight:700; color:var(--accent2); border-bottom:1px solid rgba(255,255,255,0.03); }
+.styled-table tbody tr td{ padding:10px 12px; border-bottom:1px dashed rgba(255,255,255,0.02); color:var(--muted); }
+.styled-table tbody tr:hover td{ background: linear-gradient(90deg, rgba(110,246,255,0.02), rgba(210,143,255,0.02)); color:var(--text); }
+
+.page-content{ max-width:1000px; margin:22px auto; padding:0 18px; }
+
+.grid-gallery{ display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px; }
+.grid-gallery figure{ background:var(--panel); padding:8px; border-radius:10px; border:1px solid rgba(255,255,255,0.02); }
+.grid-gallery img{ width:100%; height:160px; object-fit:cover; border-radius:6px; display:block; }
+
+.site-footer{
+  position:fixed;
+  bottom:8px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:8px 14px;
+  border-radius:999px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  font-size:0.85rem;
+  color:var(--muted);
+  border:1px solid rgba(255,255,255,0.02);
+  backdrop-filter: blur(6px);
+}
+
+.link{ color:var(--accent1); text-decoration:none; font-weight:700; }
+.link:hover{ text-decoration:underline; }
+
+@media (max-width:860px){
+  .hero{ flex-direction:column; }
+  .hero-image{ width:100%; min-height:220px; border-left:none; border-top:1px solid rgba(255,255,255,0.02)} 
+}
+
+#poltergeist {
+  width: 54px;
+  height: 54px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZJV0G0aBr8E9n6RX4kLA8VH6OExJiA3AX7Q&s"); /* череп у мряці */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.78;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 9999;
+
+  /* легка мряка і сяйво */
+  filter:
+    drop-shadow(0 0 14px rgba(160,220,255,0.28))
+    blur(0.2px);
+
+  /* легке плавання */
+  animation: ghost-float 4.8s ease-in-out infinite;
+
+  /* плавне пересування */
+  transition: top 0.32s linear, left 0.32s linear, opacity 0.3s ease;
+}
+
+/* пришвидшений ривок при втечі */
+#poltergeist.dash {
+  transition: top 0.14s linear, left 0.14s linear;
+  opacity: 0.92;
+}
+
+@keyframes ghost-float {
+  0%   { transform: translateY(-8px); }
+  50%  { transform: translateY(8px); }
+  100% { transform: translateY(-8px); }
+}
